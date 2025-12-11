@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>IoT Smart Home Dashboard</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-center">
+      <h1>IoT-Based Smart Home Security & Surveillance System</h1>
+      <p class="welcome">Welcome, {{ session['user'] if 'user' in session else 'User' }}</p>
+      <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+  </header>
+
+  <section id="notifications" class="notifications">
+    <div class="info-box">Initializing...</div>
+  </section>
+
+  <main>
+    <section class="devices-section">
+      <h2>Devices Status</h2>
+      <div id="devices" class="device-list">
+        <p>Front Door Lock: <b style="color:green;">Locked</b></p>
+        <p>Living Room Camera: <b style="color:green;">Online</b></p>
+        <p>Gas Sensor: <b style="color:green;">Active</b></p>
+      </div>
+    </section>
+
+    <section class="events-section">
+      <h2>Recent Events</h2>
+      <div id="events" class="event-list"></div>
+    </section>
+  </main>
+
+  <section class="readings-section">
+    <h2>Live Sensor Readings</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Device</th>
+          <th>Temperature</th>
+          <th>Humidity</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="readings">
+        <tr><td colspan="4" style="text-align:center;">Loading readings...</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <p>© 2025 IoT Smart Home Project | Designed by Dharani D V</p>
+  </footer>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>
 
