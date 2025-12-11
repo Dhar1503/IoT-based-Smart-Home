@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Home Login</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <style>
+    .login-body {
+      height:100vh; display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(135deg,#0099ff,#66ccff);
+    }
+    .login-container { background:white;padding:28px;border-radius:12px; width:360px; box-shadow:0 8px 25px rgba(0,0,0,0.18); text-align:center;}
+    .login-container h2{ color:#0078ff; margin:0 0 12px 0;}
+    input{ width:84%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid #ccc; }
+    button{ width:88%; padding:10px; background:#0078ff;color:white;border:none;border-radius:8px; margin-top:10px; cursor:pointer;}
+    button:hover{ background:#005ecb; }
+  </style>
+</head>
+<body class="login-body">
+  <div class="login-container">
+    <h2>Smart Home Login</h2>
+    <input id="u" placeholder="Username" value="admin" /><br>
+    <input id="p" type="password" placeholder="Password" value="admin123" /><br>
+    <button onclick="login()">Login</button>
+    <p style="font-size:13px;color:#666;margin-top:10px">Demo: <b>admin / admin123</b></p>
+  </div>
+
+  <script>
+    async function login(){
+      const res = await fetch('/api/login', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ username:document.getElementById('u').value, password:document.getElementById('p').value })
+      });
+      const data = await res.json();
+      if (data.ok) window.location = '/dashboard';
+      else alert('Invalid credentials');
+    }
+  </script>
+</body>
+</html>
